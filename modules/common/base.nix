@@ -21,7 +21,6 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.command-not-found.enable = false;
-  programs.nix-index.enable = true;
 
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
