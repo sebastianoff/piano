@@ -45,6 +45,11 @@
     powerOnBoot = true;
   };
 
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+  };
+
   programs.fish.enable = true;
 
   environment.systemPackages = with pkgs; [

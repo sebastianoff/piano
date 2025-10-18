@@ -8,11 +8,16 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    apple-fonts.url= "github:Lyndeno/apple-fonts.nix";
+    apple-fonts.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, zen-browser, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, zen-browser, apple-fonts, ... } @ inputs:
   let
     systems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -43,6 +48,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "b";
           home-manager.users.cat = import ./home/cat/home.nix;
    	      home-manager.extraSpecialArgs = { inherit inputs; system = "x86_64-linux"; };
         }
